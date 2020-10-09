@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 # 添加所需要的库
 import os
 # 添加自己编写的算法
@@ -91,5 +92,5 @@ def algorithm():
     return "loading"
 if __name__ == '__main__':
 
-    application.run()
+    application.run(port=8080)
 
