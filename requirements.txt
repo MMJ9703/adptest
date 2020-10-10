@@ -1,5 +1,5 @@
-numpy 1.16.4
-pandas 0.24.2
+numpy1.16.4
+pandas0.24.2
 pywt
 requests
 PyWavelets
