@@ -46,7 +46,7 @@ def hello():
 #     return "loading"
 if __name__ == '__main__':
     
-    application.run(port=8080)
+    application.run()
 
 def import_data_task(data):  
     try:
