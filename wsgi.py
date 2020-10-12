@@ -30,9 +30,26 @@ sqlEngine = create_engine(mysql_uri, pool_recycle=3600)
 
 print ('=== mysql uri: ' + mysql_uri)
 
+# rest  api（应用执行端口）
+@application.route('/')
+def hello():
+    return "OK"
+# @application.route('/unitdata', methods=['POST'])
+# def unitdata():
+#     data = request.get_json()
+#     executor.submit(import_data_task,data)
+#     return "loading"
+# @application.route('/algorithm', methods=['POST'])
+# def algorithm():
+#     data = request.get_json()
+#     executor.submit(algorithm_task,data)
+#     return "loading"
+if __name__ == '__main__':
+    
+    application.run(port=8080)
+
 def import_data_task(data):  
     try:
-
         print ('===== run task')
         # 机组信息
         # ID = 150817080435211
@@ -50,7 +67,6 @@ def import_data_task(data):
     return True
 def algorithm_task(data):
     try:
-
         print ('===== run task')
         # 机组信息
         # ID = 150817080435211
@@ -69,28 +85,8 @@ def algorithm_task(data):
         table_name_2 =  'clean_data_'+'id'+str(ID)+'pt_'+tpye
         data_1.to_sql(table_name_2, con=sqlEngine, if_exists='replace', index=True)
         print ('finish')
-
     except Exception as e:
         print ('===error===')
         print (e)
         raise e
     return True
-
-# rest  api（应用执行端口）
-@application.route('/')
-def hello():
-    return "OK"
-# @application.route('/unitdata', methods=['POST'])
-# def unitdata():
-#     data = request.get_json()
-#     executor.submit(import_data_task,data)
-#     return "loading"
-# @application.route('/algorithm', methods=['POST'])
-# def algorithm():
-#     data = request.get_json()
-#     executor.submit(algorithm_task,data)
-#     return "loading"
-if __name__ == '__main__':
-
-    application.run()
-
