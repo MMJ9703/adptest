@@ -33,7 +33,7 @@ print ('=== mysql uri: ' + mysql_uri)
 # rest  api（应用执行端口）
 @application.route('/')
 def hello():
-    return "OK"
+    return b"OK"
 # @application.route('/unitdata', methods=['POST'])
 # def unitdata():
 #     data = request.get_json()
