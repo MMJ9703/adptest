@@ -9,6 +9,5 @@ six
 Flask
 flask
 flask-executor
-flask-cors
 sqlalchemy
 pymysql
