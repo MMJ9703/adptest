@@ -16,7 +16,6 @@ from sqlalchemy import create_engine
 
 from flask import Flask
 from flask import request
-from flask_cors import *
 
 application = Flask(__name__)
 executor = Executor(application)
@@ -33,6 +32,7 @@ print ('=== mysql uri: ' + mysql_uri)
 # rest  api（应用执行端口）
 @application.route('/')
 def hello():
+    print('1')
     return b"OK"
 # @application.route('/unitdata', methods=['POST'])
 # def unitdata():
