@@ -80,17 +80,17 @@ def algorithm_task(data):
 @application.route('/')
 def hello():
     return "OK"
-@application.route('/unitdata', methods=['POST'])
-def unitdata():
-    data = request.get_json()
-    executor.submit(import_data_task,data)
-    return "loading"
-@application.route('/algorithm', methods=['POST'])
-def algorithm():
-    data = request.get_json()
-    executor.submit(algorithm_task,data)
-    return "loading"
+# @application.route('/unitdata', methods=['POST'])
+# def unitdata():
+#     data = request.get_json()
+#     executor.submit(import_data_task,data)
+#     return "loading"
+# @application.route('/algorithm', methods=['POST'])
+# def algorithm():
+#     data = request.get_json()
+#     executor.submit(algorithm_task,data)
+#     return "loading"
 if __name__ == '__main__':
 
-    application.run()
+    application.run(port=8080)
 
