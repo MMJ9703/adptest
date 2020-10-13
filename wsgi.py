@@ -16,6 +16,7 @@ from sqlalchemy import create_engine
 
 from flask import Flask
 from flask import request
+from flask_cors import *
 
 application = Flask(__name__)
 executor = Executor(application)
@@ -28,25 +29,6 @@ mysql_uri = env.get('MYSQL_URI')
 sqlEngine = create_engine(mysql_uri, pool_recycle=3600)
 
 print ('=== mysql uri: ' + mysql_uri)
-
-# rest  api（应用执行端口）
-@application.route('/')
-def hello():
-    print('1')
-    return b"OK"
-# @application.route('/unitdata', methods=['POST'])
-# def unitdata():
-#     data = request.get_json()
-#     executor.submit(import_data_task,data)
-#     return "loading"
-# @application.route('/algorithm', methods=['POST'])
-# def algorithm():
-#     data = request.get_json()
-#     executor.submit(algorithm_task,data)
-#     return "loading"
-if __name__ == '__main__':
-    
-    application.run()
 
 def import_data_task(data):  
     try:
@@ -90,3 +72,23 @@ def algorithm_task(data):
         print (e)
         raise e
     return True
+
+# rest  api（应用执行端口）
+@application.route('/')
+def hello():
+    return b"OK"
+@application.route('/unitdata', methods=['POST'])
+def unitdata():
+    data = request.get_json()
+    executor.submit(import_data_task,data)
+    return "loading"
+@application.route('/algorithm', methods=['POST'])
+def algorithm():
+    data = request.get_json()
+    executor.submit(algorithm_task,data)
+    return "loading"
+if __name__ == '__main__':
+    
+    application.run(port=8080)
+
+
