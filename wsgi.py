@@ -76,6 +76,7 @@ def algorithm_task(data):
 # rest  api（应用执行端口）
 @application.route('/')
 def hello():
+    print('ready')
     return b"OK"
 @application.route('/unitdata', methods=['POST'])
 def unitdata():
